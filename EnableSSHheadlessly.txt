@@ -1,0 +1,13 @@
+Ensure that ssh will run and allow connections. Here's how I did it:
+
+a. Mount the second SD Card partition, the big one with the etc directory.
+
+b. Create a file etc/SSHFLAG
+
+c. Insert the following code into etc/rc.local just above the exit 0 line.
+
+if [ -e /etc/SSHFLAG ]; then
+  /usr/sbin/update-rc.d -f ssh defaults
+  /bin/rm /etc/SSHFLAG
+  /sbin/shutdown -r now
+fi
